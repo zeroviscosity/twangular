@@ -1,0 +1,60 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Twangular</a>
+  </div>
+</div>
+<div ng-controller="MainCtrl">
+  <form class="form-search well well-small">
+    <a href="https://twitter.com" target="_blank" class="ir pull-right logo">Twitter</a>
+    <input type="text" class="input-xlarge search-query" ng-model="query" 
+      placeholder="Enter a keyword to search Twitter...">
+    <button type="submit" class="btn" ng-click="search()">Search</button>
+  </form>
+  <ul class="unstyled">
+    <li ng-repeat="tweet in tweets | orderBy: tweet.created_at" class="tweet">
+      <div class="media" id="tweet-{{tweet.id}}">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="{{tweet.profile_image_url}}" width="48" height="48">
+        </a>
+        <div class="media-body">
+          <div class="pull-right">
+            <iframe class="follow" allowtransparency="true" frameborder="0" scrolling="no" 
+              src="//platform.twitter.com/widgets/follow_button.html?screen_name={{tweet.from_user}}"></iframe>
+          </div>
+          <h4 class="media-heading">
+            <a href="https://twitter.com/{{tweet.from_user}}">{{tweet.from_user_name}}</a>
+            <small><a href="https://twitter.com/{{tweet.from_user}}" 
+              class="muted">@{{tweet.from_user}}</a></small>
+          </h4>
+          <div ng-bind-html="tweet.text | linky | hashtagLinky | usernameLinky"></div>
+          <div class="clearfix">
+            <div class="tweet-buttons pull-right">
+              <a href="https://twitter.com/intent/tweet?in_reply_to={{tweet.id}}" 
+                class="ir reply">Reply</a>
+              <a href="https://twitter.com/intent/retweet?tweet_id={{tweet.id}}" 
+                class="ir retweet">Retweet</a>
+              <a href="https://twitter.com/intent/favorite?tweet_id={{tweet.id}}" 
+                class="ir favorite">Favorite</a>
+            </div>
+            <div class="muted">{{tweet.created_at | formatDate}}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<!--
+{"created_at":"2013-02-02 05:18:24",
+"text":"@mrs_hyde @dukelyer send a tissue sample - our maker room is ready 4 3d printers ready for kids! Use 123d Catch and we'll print you!;)",
+"profile_image_url":"http://a0.twimg.com/profile_images/2684095666/fcbfad8fda099812bd11c108ecea928d_normal.jpeg",
+"from_user":"stephen_tpk",
+"from_user_id":197713979,
+"geo":null,
+"id":297574670163669000,"
+iso_language_code":"en","
+from_user_id_str":"197713979",
+"from_user_name":"Stephen Lethbridge",
+"source":"Twitter for iPad",
+"id_str":"297574670163668992",
+"profile_image_url_https":"https://si0.twimg.com/profile_images/2684095666/fcbfad8fda099812bd11c108ecea928d_normal.jpeg"}
+-->
