@@ -36,8 +36,9 @@ twangularApp.filter('hashtagLinky', function() {
     return function(text) {
        text = text.replace(/[^&]#(\w+)\b/gi,
             function (hashtag) {
-                return '<a href="https://twitter.com/search?src=hash&q=%23' + 
-                  hashtag.replace('#', '') + '" target="_blank">' + hashtag + '</a>';
+                var parts = hashtag.split('#');
+                return parts[0] + '<a href="https://twitter.com/search?src=hash&q=%23' + 
+                  parts[1] + '" target="_blank">#' + parts[1] + '</a>';
                 }
         );
         return text;
