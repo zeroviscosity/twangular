@@ -1,6 +1,7 @@
 'use strict';
 
 twangularApp.controller('MainCtrl', function($scope, $http) {
+    //Uses the url and query to load in an array of tweets
     var loadTweets = function() {
         $http.get($scope.url + $scope.query)
           .success(function(data, status) {

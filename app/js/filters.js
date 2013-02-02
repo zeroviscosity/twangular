@@ -1,5 +1,6 @@
 'use strict';
 
+//Turns an ISO style date into something like '2 Feb 2:47 pm'
 twangularApp.filter('formatDate', function() {
     return function(stamp) {
 	    var localDate = new Date(),
@@ -32,6 +33,7 @@ twangularApp.filter('formatDate', function() {
     };
 });
 
+//Replaces hashtags with links to Twitter
 twangularApp.filter('hashtagLinky', function() {
     return function(text) {
        text = text.replace(/[^&]#(\w+)\b/gi,
@@ -45,6 +47,7 @@ twangularApp.filter('hashtagLinky', function() {
     };
 });
 
+//Replaces usernames with links to Twitter
 twangularApp.filter('usernameLinky', function() {
     return function(text) {
        text = text.replace(/@(\w+)\b/gi,
