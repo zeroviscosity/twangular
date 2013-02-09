@@ -24,13 +24,16 @@ twangularApp.controller('MainCtrl', function($scope, $http) {
     //Enter the source of your filtered stream here
     $scope.url = '';
     
+    $scope.timer;
     $scope.search = function() {
-        //Reset the following scope arrays
+        //Reset the following scope variables
         $scope.tweetIds = [];        
         $scope.tweets = [];
+        clearInterval($scope.timer);
+        
         //Pull in some tweets now and then every 30 seconds thereafter
         loadTweets();
-        setInterval(loadTweets, 30000);
+        $scope.timer = setInterval(loadTweets, 30000);
     };
 });
 
